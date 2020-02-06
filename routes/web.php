@@ -10,7 +10,24 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+/*
+|$router->get('/', function () use ($router) {
+|    return true;
+|});
+ */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+/*
+ * 🦊 Create a GET Endpoint
+ * /
+
+/*
+ * 🦊 Create a POST Endpoint
+ * /
+
+/*
+ * 🦊 Create a PUT Endpoint
+ * /
+
+/*
+ * 🦊 Create a DELETE Endpoint
+ * /
