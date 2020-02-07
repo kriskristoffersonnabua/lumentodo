@@ -11,22 +11,30 @@
 |
 */
 
-//🦊 Create the todo model
-//🦊 Create the todo controller
-
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
 $router->group(['prefix' => '/todos'], function ($router) {
-//🦊 Create a get endpoint
+    $router->get('/',[
+        'as' => 'Todos.index',
+        'uses' => 'TodoController@index'
+    ]);
 
-//🦊 Create a post endpoint
+    $router->post('/',[
+        'as' => 'Todos.post',
+        'uses' => 'TodoController@post'
+    ]);
 
-//🦊 Create a put endpoint
+    $router->put('/{todo_id}',[
+        'as' => 'Todos.put',
+        'uses' => 'TodoController@put'
+    ]);
 
-//🦊 Create a delete endpoint
+    $router->delete('/{todo_id}',[
+        'as' => 'Todos.delete',
+        'uses' => 'TodoController@delete'
+    ]);
 });
 
 // Next Workshop Authorization
-// Next Workshop Migration/Seeder
