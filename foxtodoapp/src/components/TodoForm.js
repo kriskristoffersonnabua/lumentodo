@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from "react";
+import { TodoContext } from "../context/TodoContext";
 
 export default props => {
     const [isEdit, setIsEditForm] = useState(false);
-    const [description, setDescription] = useState('');
+    const [description, setDescription] = useState("");
+    const { createTodo } = useContext(TodoContext);
 
     useEffect(() => {
         setIsEditForm(props.isEdit);
@@ -14,7 +16,16 @@ export default props => {
         }
     }, [isEdit]);
 
+    const create_todo = () => {
+        createTodo({
+            description
+        });
+    };
+
     const handleInputChange = evt => setDescription(evt.currentTarget.value);
+    const handle_save_edit = () => {
+        props.handleSaveEdits(description);
+    };
 
     return (
         <div class="box">
@@ -30,13 +41,19 @@ export default props => {
             </div>
             {isEdit ? (
                 <button
-                    onClick={!!props.handleSaveEdits && props.handleSaveEdits}
+                    onClick={handle_save_edit}
                     class="button is-small is-primary"
-                    style={{ marginRight: 10 }}>
+                    style={{ marginRight: 10 }}
+                >
                     Save Edits
                 </button>
             ) : (
-                <button class="button is-small is-primary">Add Todo</button>
+                <button
+                    class="button is-small is-primary"
+                    onClick={create_todo}
+                >
+                    Add Todo
+                </button>
             )}
             {isEdit && (
                 <button class="button is-small is-danger">Delete</button>

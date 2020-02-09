@@ -11,11 +11,7 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
-
-$router->group(['prefix' => '/todos'], function ($router) {
+$router->group(['prefix' => '/todos', 'middleware' => 'auth'], function ($router) {
     $router->get('/',[
         'as' => 'Todos.index',
         'uses' => 'TodoController@index'
